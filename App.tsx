@@ -54,6 +54,15 @@ export default function App() {
     }
   };
 
+  // NEW: Handler to clear only evaluations (scores) but keep the questions
+  const handleClearEvaluations = () => {
+    if (window.confirm("Warning: This will delete ALL current scores/grades. This is typically done to let a NEW person start grading.\n\nHave you exported the current results first?\n\nClick OK to clear scores.")) {
+      setEvaluations({});
+      localStorage.removeItem('llm-eval-data');
+      setViewMode(ViewMode.EVALUATE); // Go back to grading screen
+    }
+  };
+
   const handleUpdateEvaluation = (questionId: number, modelKey: string, scores: Scores) => {
     setEvaluations(prev => ({
       ...prev,
@@ -93,7 +102,7 @@ export default function App() {
         />
         
         <div className="mt-auto mb-4">
-          <div className="text-[10px] text-center text-slate-500">v1.2</div>
+          <div className="text-[10px] text-center text-slate-500">v1.3</div>
         </div>
       </aside>
 
@@ -121,6 +130,7 @@ export default function App() {
             evaluations={evaluations}
             setEvaluations={setEvaluations}
             onReset={handleResetQuestions}
+            onClearEvaluations={handleClearEvaluations}
           />
         )}
       </main>
