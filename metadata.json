@@ -1,0 +1,5 @@
+{
+  "name": "LLM EvalBench",
+  "description": "A specialized tool for evaluating and scoring Large Language Model responses based on academic criteria including Accuracy, Completeness, Readability, and Level of Detail.",
+  "requestFramePermissions": []
+}
